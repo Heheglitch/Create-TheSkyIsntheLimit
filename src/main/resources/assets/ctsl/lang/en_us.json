@@ -1,0 +1,13 @@
+{
+  "itemGroup.ctsl": "Example Mod Tab",
+  "block.ctsl.example_block": "Example Block",
+  "item.ctsl.example_item": "Example Item",
+
+  "ctsl.configuration.title": "Create: The Sky Isn't the limit Configs",
+  "ctsl.configuration.section.ctsl.common.toml": "Create: The Sky Isn't the limit Configs",
+  "ctsl.configuration.section.ctsl.common.toml.title": "Create: The Sky Isn't the limit Configs",
+  "ctsl.configuration.items": "Item List",
+  "ctsl.configuration.logDirtBlock": "Log Dirt Block",
+  "ctsl.configuration.magicNumberIntroduction": "Magic Number Text",
+  "ctsl.configuration.magicNumber": "Magic Number"
+}
