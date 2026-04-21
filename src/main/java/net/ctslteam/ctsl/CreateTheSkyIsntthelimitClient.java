@@ -24,8 +24,6 @@ public class CreateTheSkyIsntthelimitClient {
 
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
-        // Some client setup code
-        CreateTheSkyIsntthelimit.LOGGER.info("HELLO FROM CLIENT SETUP");
-        CreateTheSkyIsntthelimit.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
     }
 }
