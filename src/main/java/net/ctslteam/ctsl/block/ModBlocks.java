@@ -1,6 +1,7 @@
 package net.ctslteam.ctsl.block;
 
 import net.ctslteam.ctsl.CreateTheSkyIsntthelimit;
+import net.ctslteam.ctsl.block.custom.DebugThruster;
 import net.ctslteam.ctsl.item.ModItems;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -17,10 +18,13 @@ public class ModBlocks {
             DeferredRegister.createBlocks(CreateTheSkyIsntthelimit.MOD_ID);
 
 
-    /* Example Block regestry using the function registerBlock
+    /* Example Block registry using the function registerBlock
     /* public static final DeferredBlock<Block> EXAMPLE_BLOCK = registerBlock("example_block",
     /*        () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.AMETHYST_BLOCK)));
     */
+
+    public static final DeferredBlock<Block> DEBUG_THRUSTER = registerBlock("debug_thruster",
+            () -> new DebugThruster(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 
     // A function that register both the block and the blockItem using the registerBlockItem function
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

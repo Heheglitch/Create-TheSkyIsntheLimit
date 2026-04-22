@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "ctsl:block/debug_thruster"
+    },
+    "facing=south": {
+      "model": "ctsl:block/debug_thruster",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "ctsl:block/debug_thruster",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "ctsl:block/debug_thruster",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "ctsl:block/debug_thruster",
+      "x": -90
+    },
+    "facing=down": {
+      "model": "ctsl:block/debug_thruster",
+      "x": 90
+    }
+  }
+}

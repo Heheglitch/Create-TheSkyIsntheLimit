@@ -1,6 +1,7 @@
 package net.ctslteam.ctsl;
 
 import net.ctslteam.ctsl.block.ModBlocks;
+import net.ctslteam.ctsl.item.ModCreativeModeTabs;
 import net.ctslteam.ctsl.item.ModItems;
 import org.slf4j.Logger;
 
@@ -51,6 +52,8 @@ public class CreateTheSkyIsntthelimit {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+        // Add the creative mod tab(s)
+        ModCreativeModeTabs.register(modEventBus);
         // Add the Items of the mod
         ModItems.register(modEventBus);
         // Add the blocks of the mod

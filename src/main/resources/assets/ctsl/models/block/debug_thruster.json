@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "ctsl:block/debug_thruster",
+    "down": "ctsl:block/debug_thruster",
+    "west": "ctsl:block/debug_thruster",
+    "east": "ctsl:block/debug_thruster",
+    "north": "ctsl:block/debug_thruster_front",
+    "south": "ctsl:block/debug_thruster"
+  }
+}
