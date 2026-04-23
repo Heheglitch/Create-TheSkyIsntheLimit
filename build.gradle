@@ -71,8 +71,18 @@ repositories {
     }
 
     maven {
-        name = "Create Aeronautics"
+        name = "Create Simulated"
         url = "https://maven.ryanhcode.dev/releases/dev/simulated_team/simulated"
+    }
+
+    maven {
+        name = "Create Aeronautics"
+        url = "https://maven.ryanhcode.dev/releases/dev/eriksonn/aeronautics"
+    }
+
+    maven {
+        name = "Create Offroad"
+        url = "https://maven.ryanhcode.dev/releases/dev/ryanhcode/offroad"
     }
 }
 
@@ -203,6 +213,8 @@ dependencies {
 
     implementation "dev.ryanhcode.sable:sable-neoforge-${project.minecraft_version}:${project.sable_version}"
     implementation "dev.simulated_team.simulated:simulated-neoforge-${project.minecraft_version}:${project.aeronautics_version}"
+    implementation "dev.eriksonn.aeronautics:aeronautics-neoforge-${project.minecraft_version}:${project.aeronautics_version}"
+    implementation "dev.ryanhcode.offroad:offroad-neoforge-${project.minecraft_version}:${project.aeronautics_version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
