@@ -28,6 +28,26 @@ sourceSets.main.resources {
 
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
+
+    maven {
+        url = "https://maven.squiddev.cc"
+        content {
+            includeGroup("cc.tweaked")
+        }
+    }
+
     maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
     maven { url = "https://maven.ithundxr.dev/snapshots" } // Registrate
 
@@ -42,8 +62,17 @@ repositories {
     }
 
     maven {
+        url = "https://maven.theillusivec4.top/"
+    }
+
+    maven {
         name = "RyanHCode Maven"
         url = "https://maven.ryanhcode.dev/releases"
+    }
+
+    maven {
+        name = "Create Aeronautics"
+        url = "https://maven.ryanhcode.dev/releases/dev/simulated_team/simulated"
     }
 }
 
@@ -173,6 +202,7 @@ dependencies {
     }
 
     implementation "dev.ryanhcode.sable:sable-neoforge-${project.minecraft_version}:${project.sable_version}"
+    implementation "dev.simulated_team.simulated:simulated-neoforge-${project.minecraft_version}:${project.aeronautics_version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
