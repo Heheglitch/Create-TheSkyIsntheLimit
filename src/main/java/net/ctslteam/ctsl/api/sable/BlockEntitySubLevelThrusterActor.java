@@ -28,7 +28,7 @@ public interface BlockEntitySubLevelThrusterActor extends BlockEntitySubLevelAct
 
     default void applyForces(final ServerSubLevel subLevel, final Vec3 thrustDirection, final double timeStep) {
         final BlockEntityThruster thruster = this.getThruster();
-        final Vec3 thrust = thrustDirection.scale(thruster.getThrust() * timeStep);
+        final Vec3 thrust = thrustDirection.scale(thruster.getScaledThrust() * timeStep);
 
         THRUST_POSITION.set(JOMLConversion.atCenterOf(thruster.getBlockPos()));
         THRUST_VECTOR.set(thrust.x, thrust.y, thrust.z);

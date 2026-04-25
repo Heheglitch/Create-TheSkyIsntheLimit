@@ -20,6 +20,13 @@ public abstract class BaseThrusterBlockEntity extends BlockEntity implements Blo
         return this;
     }
 
+    public abstract double getConfigThrust();
+
+    @Override
+    public double getThrust() {
+        return this.getConfigThrust();
+    }
+
     @Override
     public Direction getBlockDirection() {
         return this.getBlockState().getValue(BlockStateProperties.FACING);

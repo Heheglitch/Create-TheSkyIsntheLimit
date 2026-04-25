@@ -1,5 +1,7 @@
 package net.ctslteam.ctsl.block.custom.thrusters.debug_thruster;
 
+import dev.eriksonn.aeronautics.content.blocks.propeller.small.BasePropellerBlock;
+import net.ctslteam.ctsl.Config;
 import net.ctslteam.ctsl.block.custom.thrusters.BaseThrusterBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -12,7 +14,12 @@ public class DebugThrusterBlockEntity extends BaseThrusterBlockEntity {
     }
 
     @Override
-    public double getThrust() {
-        return 10;
+    public double getConfigThrust() {
+        return Config.DEBUG_THRUSTER_THRUST.get();
+    }
+
+    @Override
+    public boolean isActive() {
+        return super.isActive();
     }
 }

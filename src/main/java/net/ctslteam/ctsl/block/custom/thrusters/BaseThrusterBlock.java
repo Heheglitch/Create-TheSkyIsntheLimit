@@ -1,6 +1,8 @@
 package net.ctslteam.ctsl.block.custom.thrusters;
 
+import com.mojang.serialization.MapCodec;
 import com.simibubi.create.foundation.block.IBE;
+import net.ctslteam.ctsl.block.custom.thrusters.debug_thruster.DebugThrusterBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -39,11 +41,14 @@ public abstract class BaseThrusterBlock extends DirectionalBlock implements IBE<
     }
 
     @Override
-    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
-        if (state.getValue(POWERED)) {
-            BaseThrusterBlockEntity.Active = true;
-        } else {
-            BaseThrusterBlockEntity.Active = false;
+    protected void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos neighborPos, boolean movedByPiston) {
+        if (worldIn.isClientSide)
+            return;
+
+        boolean previouslyPowered = state.getValue(POWERED);
+        if (previouslyPowered != worldIn.hasNeighborSignal(pos)) {
+            worldIn.setBlock(pos, state.cycle(POWERED), Block.UPDATE_CLIENTS);
+            BaseThrusterBlockEntity.Active = worldIn.hasNeighborSignal(pos);
         }
     }
 

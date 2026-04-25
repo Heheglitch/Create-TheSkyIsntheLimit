@@ -25,7 +25,6 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -43,21 +42,12 @@ public class CreateTheSkyIsnttheLimit {
         modEventBus.addListener(this::commonSetup);
 
         // Register ourselves for server and other game events we are interested in.
-        // Note that this is necessary if and only if we want *this* class (CreateTheSkyIsntthelimit) to respond directly to events.
+        // Note that this is necessary if and only if we want *this* class (CreateTheSkyIsnttheLimit) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
-        // Add the creative mod tab(s)
-        //ModCreativeModeTabs.register(modEventBus);
-        // Add the Items of the mod
-        //CtslItems.register(modEventBus);
-        // Add the blocks of the mod
-        //CtslBlocks.register(modEventBus);
-
-        // Register the item to a creative tab
-        modEventBus.addListener(this::addCreative);
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
 
         getRegistrate().registerEventListeners(modEventBus);
 
@@ -65,11 +55,6 @@ public class CreateTheSkyIsnttheLimit {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-
-    }
-
-    // Add the example block item to the building blocks tab
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
 
     }
 

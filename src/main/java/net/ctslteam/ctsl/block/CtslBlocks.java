@@ -1,12 +1,23 @@
 package net.ctslteam.ctsl.block;
 
+import com.simibubi.create.AllTags;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.BlockStateGen;
+import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import dev.ryanhcode.sable.Sable;
+import dev.ryanhcode.sable.index.SableTags;
 import dev.simulated_team.simulated.registrate.SimulatedRegistrate;
 import net.ctslteam.ctsl.CreateTheSkyIsnttheLimit;
 import net.ctslteam.ctsl.block.custom.thrusters.debug_thruster.DebugThrusterBlock;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -43,14 +54,32 @@ public class CtslBlocks {
     }
      */
 
+    public static final TagKey<Block> SUPER_HEAVY = TagKey.create(
+            Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath("sable", "super_heavy")
+    );
+    public static final TagKey<Block> HEAVY = TagKey.create(
+            Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath("sable", "heavy")
+    );
+    public static final TagKey<Block> LIGHT = TagKey.create(
+            Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath("sable", "light")
+    );
+    public static final TagKey<Block> SUPER_LIGHT = TagKey.create(
+            Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath("sable", "super_light")
+    );
+
     public static final BlockEntry<DebugThrusterBlock> DEBUG_THRUSTER =
             REGISTRATE.block("debug_thruster", DebugThrusterBlock::new)
-                    .initialProperties(() -> Blocks.IRON_BLOCK)
-                    .properties(properties -> properties.sound(SoundType.AMETHYST))
+                    .initialProperties(() -> Blocks.STONE)
                     .lang("Debug Thruster")
                     .blockstate((c, p) -> p.directionalBlock(c.get(), p.models()
                                     .orientableVertical(c.getName(), p.modLoc("block/debug_thruster"), p.modLoc("block/debug_thruster_front"))))
+                    .tag(SUPER_HEAVY)
                     .item()
+                    .properties(properties -> properties.rarity(Rarity.EPIC))
                     .build()
                     .register();
 

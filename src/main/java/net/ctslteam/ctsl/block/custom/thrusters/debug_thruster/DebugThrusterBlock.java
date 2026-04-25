@@ -5,7 +5,10 @@ import com.simibubi.create.foundation.block.IBE;
 import net.ctslteam.ctsl.block.custom.thrusters.BaseThrusterBlock;
 import net.ctslteam.ctsl.block.custom.thrusters.BaseThrusterBlockEntity;
 import net.ctslteam.ctsl.index.CtslBlockEntityTypes;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -26,18 +29,14 @@ public class DebugThrusterBlock extends BaseThrusterBlock {
     }
 
     @Override
-    public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
-        if (context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) {
-            return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection());
-        } else {
-            return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite());
-        }
-    }
-
-    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(POWERED);
         builder.add(FACING);
+    }
+
+    @Override
+    public boolean canConnectRedstone(BlockState state, BlockGetter level, BlockPos pos, @Nullable Direction direction) {
+        return true;
     }
 
     @Override
