@@ -10,7 +10,7 @@ import net.createmod.catnip.lang.FontHelper;
 import net.ctslteam.ctsl.block.CtslBlocks;
 import net.ctslteam.ctsl.index.CtslBlockEntityTypes;
 import net.ctslteam.ctsl.item.CtslItems;
-import net.ctslteam.registry.SimulatedRegistrate;
+import net.ctslteam.registry.CtslRegistrate;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
@@ -73,8 +73,8 @@ public class CreateTheSkyIsnttheLimit {
 
     }
 
-    private static final NonNullSupplier<SimulatedRegistrate> REGISTRATE = NonNullSupplier.lazy(() ->
-            (SimulatedRegistrate) new SimulatedRegistrate(CreateTheSkyIsnttheLimit.path(MOD_ID), MOD_ID).defaultCreativeTab((ResourceKey<CreativeModeTab>) null));
+    private static final NonNullSupplier<CtslRegistrate> REGISTRATE = NonNullSupplier.lazy(() ->
+            (CtslRegistrate) new CtslRegistrate(CreateTheSkyIsnttheLimit.path(MOD_ID), MOD_ID).defaultCreativeTab((ResourceKey<CreativeModeTab>) null));
 
     public static void init() {
         setTooltips();
@@ -84,7 +84,7 @@ public class CreateTheSkyIsnttheLimit {
         CtslItems.init();
     }
 
-    public static SimulatedRegistrate getRegistrate() {
+    public static CtslRegistrate getRegistrate() {
         return REGISTRATE.get();
     }
 
