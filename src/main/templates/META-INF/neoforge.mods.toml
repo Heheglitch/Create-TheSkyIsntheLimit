@@ -94,15 +94,15 @@ Example mod description.
 #[features.${mod_id}]
 #openGLVersion="[3.2,)"
 [[dependencies.${mod_id}]]
-    modId="create"
-    type="required"
-    versionRange="[6.0.10,6.1.0)"
-    ordering="NONE"
-    side="BOTH"
+modId = "create"
+type = "required"
+versionRange = "[6.0.9,)"
+ordering = "NONE"
+side = "BOTH"
 
 [[dependencies.${mod_id}]]
-    modId="sable"
-    type="required"
-    versionRange="[1.1.1,1.2.0)"
-    ordering="NONE"
-    side="BOTH"
+modId = "sable"
+type = "required"
+versionRange = "[1.0.3,)"
+ordering = "AFTER"
+side = "BOTH"
