@@ -1,7 +1,7 @@
 {
-  "priority": -1000,
+  "priority": 4000,
   "title": {
-    "text": { "translate": "aeronautics.simulated_section.aeronautics" },
+    "text": "Space",
     "background": "#bb001e3c"
   },
   "sprite": "ctsl:banner",

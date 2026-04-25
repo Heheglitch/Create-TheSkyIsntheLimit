@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/orientable_vertical",
+  "textures": {
+    "front": "ctsl:block/debug_thruster_front",
+    "side": "ctsl:block/debug_thruster"
+  }
+}

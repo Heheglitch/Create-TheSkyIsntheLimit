@@ -1,0 +1,32 @@
+package net.ctslteam.ctsl.block.custom.thrusters;
+
+import net.ctslteam.ctsl.api.sable.BlockEntitySubLevelThrusterActor;
+import net.ctslteam.ctsl.api.sable.BlockEntityThruster;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+
+public abstract class BaseThrusterBlockEntity extends BlockEntity implements BlockEntitySubLevelThrusterActor, BlockEntityThruster {
+    public BaseThrusterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
+        super(type, pos, blockState);
+    }
+
+    public static boolean Active;
+
+    public BlockEntityThruster getThruster() {
+        return this;
+    }
+
+    @Override
+    public Direction getBlockDirection() {
+        return this.getBlockState().getValue(BlockStateProperties.FACING);
+    }
+
+    @Override
+    public boolean isActive() {
+        return Active;
+    }
+}
