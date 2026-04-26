@@ -17,9 +17,4 @@ public class DebugThrusterBlockEntity extends BaseThrusterBlockEntity {
     public double getConfigThrust() {
         return Config.DEBUG_THRUSTER_THRUST.get();
     }
-
-    @Override
-    public boolean isActive() {
-        return super.isActive();
-    }
 }

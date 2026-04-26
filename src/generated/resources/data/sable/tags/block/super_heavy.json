@@ -1,5 +1,6 @@
 {
   "values": [
-    "ctsl:debug_thruster"
+    "ctsl:debug_thruster",
+    "ctsl:hydrogen_thruster"
   ]
 }

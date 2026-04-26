@@ -33,5 +33,9 @@ public class Config {
             .comment("The Debug Thruster Thrust")
             .define("Debug Thruster Thrust", 100);
 
+    public static final ModConfigSpec.ConfigValue<Integer> HYDROGEN_THRUSTER_THRUST = BUILDER
+            .comment("The Hydrogen Thruster Thrust")
+            .define("Hydrogen Thruster Thrust", 70);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 }

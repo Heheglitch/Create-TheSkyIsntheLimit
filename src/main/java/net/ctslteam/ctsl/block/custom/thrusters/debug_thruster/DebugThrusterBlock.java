@@ -29,17 +29,6 @@ public class DebugThrusterBlock extends BaseThrusterBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(POWERED);
-        builder.add(FACING);
-    }
-
-    @Override
-    public boolean canConnectRedstone(BlockState state, BlockGetter level, BlockPos pos, @Nullable Direction direction) {
-        return true;
-    }
-
-    @Override
     public BlockEntityType<? extends BaseThrusterBlockEntity> getBlockEntityType() {
         return CtslBlockEntityTypes.DEBUG_THRUSTER_BLOCK_ENTITY.get();
     }
