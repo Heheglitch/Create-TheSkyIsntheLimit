@@ -106,3 +106,17 @@ type = "required"
 versionRange = "[1.0.3,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "simulated"
+type = "required"
+versionRange = "[1.0.1,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "offroad"
+type = "required"
+versionRange = "[1.0.1,)"
+ordering = "AFTER"
+side = "BOTH"
