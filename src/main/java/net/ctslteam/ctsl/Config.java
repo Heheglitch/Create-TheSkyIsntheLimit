@@ -1,15 +1,5 @@
 package net.ctslteam.ctsl;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 // An example config class. This is not required, but it's a good idea to have one to keep your config organized.
@@ -29,9 +19,9 @@ public class Config {
             .comment("What you want the introduction message to be for the magic number")
             .define("magicNumberIntroduction", "The magic number is... ");
 
-    public static final ModConfigSpec.ConfigValue<Integer> DEBUG_THRUSTER_THRUST = BUILDER
-            .comment("The Debug Thruster Thrust")
-            .define("Debug Thruster Thrust", 100);
+    public static final ModConfigSpec.ConfigValue<Integer> CREATIVE_THRUSTER_THRUST = BUILDER
+            .comment("The Creative Thruster Thrust")
+            .define("Creative Thruster Thrust", 100);
 
     public static final ModConfigSpec.ConfigValue<Integer> HYDROGEN_THRUSTER_THRUST = BUILDER
             .comment("The Hydrogen Thruster Thrust")
