@@ -1,12 +1,11 @@
-// 1.21.1	2026-04-25T23:25:07.532213314	Registrate Provider for ctsl [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
-5b2d190eb06590f80be8587d76786851912dfaaa assets/ctsl/blockstates/debug_thruster.json
+// 1.21.1	2026-04-26T21:45:35.059586233	Registrate Provider for ctsl [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+098a13cebb9be416d5df9d0fe1203e36d71e32ae assets/ctsl/blockstates/creative_thruster.json
 25dcf745ef0981c5a180396ca20d950417c82a0a assets/ctsl/blockstates/hydrogen_thruster.json
-0db7ed61b3771bda4dccf47521a5739fced64808 assets/ctsl/lang/en_ud.json
-7a410740a508f6156a9f686f6c0d351c65c6a7db assets/ctsl/lang/en_us.json
-129377eb6a6c342a8150c566d5fc1c602724fcba assets/ctsl/models/block/debug_thruster.json
-ca8eaecace99537b353d2094b7eb3bcf3ead345d assets/ctsl/models/item/debug_thruster.json
+8d9631edecf010f53eff9269ec946800e5257ddb assets/ctsl/lang/en_ud.json
+058b6987f46c5b933c1498f6e0eca97034913c4f assets/ctsl/lang/en_us.json
+c0bfd20000ca3e6ef7fb3cef0f51c188aeae2a03 assets/ctsl/models/item/creative_thruster.json
 381e58063ffe0b33f8df42e5b0c686413bc2176a assets/ctsl/models/item/hydrogen_thruster.json
 c2c3f015892d0d45a6ab53865ba52e0a7d4d468f assets/ctsl/models/item/test_item.json
-01a0bf05a600a7afd2f61bb6ee24de7419345ece data/ctsl/loot_table/blocks/debug_thruster.json
+c391e5bd0f7fa88c2560b1ad2f21b83748487812 data/ctsl/loot_table/blocks/creative_thruster.json
 d89e7e8cfdb6d3786b93ff478f2fb9ff7f1d7b50 data/ctsl/loot_table/blocks/hydrogen_thruster.json
-303fcc99e13f9d81082717d0084533c3a4085944 data/sable/tags/block/super_heavy.json
+9d7fb2f1f4dd5474661a31376b11d8f19e073ef3 data/sable/tags/block/super_heavy.json

@@ -17,10 +17,10 @@ public class ModCreativeModeTabs {
 
     public static final Supplier<CreativeModeTab> CTSL_MOD_TAB = CREATIVE_MODE_TAB.register("ctsl_mod_tab",
             () -> CreativeModeTab.builder()
-                    .icon(() -> new ItemStack(CtslBlocks.DEBUG_THRUSTER))
+                    .icon(() -> new ItemStack(CtslBlocks.CREATIVE_THRUSTER))
                     .title(Component.translatable("creativetab.ctsl.ctsl_mod_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(CtslBlocks.DEBUG_THRUSTER);
+                        output.accept(CtslBlocks.CREATIVE_THRUSTER);
                     }).build());
 
     public static void register(IEventBus eventBus) {

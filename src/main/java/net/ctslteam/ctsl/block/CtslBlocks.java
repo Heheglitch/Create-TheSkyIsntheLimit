@@ -4,8 +4,8 @@ import com.simibubi.create.foundation.data.AssetLookup;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.simulated_team.simulated.registrate.SimulatedRegistrate;
 import net.ctslteam.ctsl.CreateTheSkyIsnttheLimit;
-import net.ctslteam.ctsl.block.custom.thrusters.debug_thruster.DebugThrusterBlock;
-import net.ctslteam.ctsl.block.custom.thrusters.fuel_thruster.hydrogen_thruster.HydrogenThrusterBlock;
+import net.ctslteam.ctsl.block.custom.thrusters.debug_thruster.CreativeThrusterBlock;
+import net.ctslteam.ctsl.block.custom.thrusters.fuel_thrusters.hydrogen_thruster.HydrogenThrusterBlock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -35,16 +35,17 @@ public class CtslBlocks {
             ResourceLocation.fromNamespaceAndPath("sable", "super_light")
     );
 
-    public static final BlockEntry<DebugThrusterBlock> DEBUG_THRUSTER =
-            REGISTRATE.block("debug_thruster", DebugThrusterBlock::new)
+    public static final BlockEntry<CreativeThrusterBlock> CREATIVE_THRUSTER =
+            REGISTRATE.block("creative_thruster", CreativeThrusterBlock::new)
                     .initialProperties(() -> Blocks.STONE)
-                    .lang("Debug Thruster")
-                    .blockstate((c, p) -> p.directionalBlock(c.get(), p.models()
-                                    .orientableVertical(c.getName(), p.modLoc("block/debug_thruster"), p.modLoc("block/debug_thruster_front"))))
+                    .properties(properties -> properties.noOcclusion().noTerrainParticles())
+                    .lang("Creative Thruster")
+                    .blockstate((c, p) -> p.directionalBlock(c.get(),
+                            AssetLookup.partialBaseModel(c, p)))
                     .tag(SUPER_HEAVY)
                     .item()
                     .properties(properties -> properties.rarity(Rarity.EPIC))
-                    .build()
+                    .transform(customItemModel())
                     .register();
 
     public static final BlockEntry<HydrogenThrusterBlock> HYDROGEN_THRUSTER =

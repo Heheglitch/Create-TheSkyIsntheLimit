@@ -1,8 +1,6 @@
 package net.ctslteam.ctsl.block.custom.thrusters;
 
-import com.mojang.serialization.MapCodec;
 import com.simibubi.create.foundation.block.IBE;
-import net.ctslteam.ctsl.block.custom.thrusters.debug_thruster.DebugThrusterBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -16,11 +14,11 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class BaseThrusterBlock extends DirectionalBlock implements IBE<BaseThrusterBlockEntity> {
+public abstract class AbstractThrusterBlock extends DirectionalBlock implements IBE<AbstractThrusterBlockEntity> {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    public BaseThrusterBlock(Properties properties) {
+    public AbstractThrusterBlock(Properties properties) {
         super(properties);
         registerDefaultState(defaultBlockState().setValue(POWERED, false));
     }
@@ -51,7 +49,7 @@ public abstract class BaseThrusterBlock extends DirectionalBlock implements IBE<
         boolean previouslyPowered = state.getValue(POWERED);
         if (previouslyPowered != worldIn.hasNeighborSignal(pos)) {
             worldIn.setBlock(pos, state.cycle(POWERED), Block.UPDATE_CLIENTS);
-            BaseThrusterBlockEntity.Active = worldIn.hasNeighborSignal(pos);
+            AbstractThrusterBlockEntity.Active = worldIn.hasNeighborSignal(pos);
         }
     }
 
@@ -61,7 +59,7 @@ public abstract class BaseThrusterBlock extends DirectionalBlock implements IBE<
     }
 
     @Override
-    public Class<BaseThrusterBlockEntity> getBlockEntityClass() {
-        return BaseThrusterBlockEntity.class;
+    public Class<AbstractThrusterBlockEntity> getBlockEntityClass() {
+        return AbstractThrusterBlockEntity.class;
     }
 }

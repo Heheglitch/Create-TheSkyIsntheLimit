@@ -1,7 +1,7 @@
-package net.ctslteam.ctsl.block.custom.thrusters.fuel_thruster;
+package net.ctslteam.ctsl.block.custom.thrusters.fuel_thrusters;
 
-import net.ctslteam.ctsl.block.custom.thrusters.BaseThrusterBlock;
-import net.ctslteam.ctsl.block.custom.thrusters.BaseThrusterBlockEntity;
+import net.ctslteam.ctsl.block.custom.thrusters.AbstractThrusterBlock;
+import net.ctslteam.ctsl.block.custom.thrusters.AbstractThrusterBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
@@ -13,8 +13,8 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
-public abstract class BaseFuelThrusterBlock extends BaseThrusterBlock {
-    public BaseFuelThrusterBlock(Properties properties) {
+public abstract class AbstractFuelThrusterBlock extends AbstractThrusterBlock {
+    public AbstractFuelThrusterBlock(Properties properties) {
         super(properties);
     }
 
@@ -44,12 +44,12 @@ public abstract class BaseFuelThrusterBlock extends BaseThrusterBlock {
 
                 if (FluidStack.isSameFluid(REQUIRED_FUEL, fluidHandler.getFluidInTank(fluidTankID))) {
                     if (fluidHandler.getFluidInTank(fluidTankID).getAmount() >= REQUIRED_FUEL_AMOUNT) {
-                        BaseThrusterBlockEntity.Active = worldIn.hasNeighborSignal(pos);
+                        AbstractThrusterBlockEntity.Active = worldIn.hasNeighborSignal(pos);
                         fluidHandler.drain(REQUIRED_FUEL_AMOUNT, IFluidHandler.FluidAction.EXECUTE);
                     }
                 }
             } else {
-                BaseThrusterBlockEntity.Active = worldIn.hasNeighborSignal(pos);
+                AbstractThrusterBlockEntity.Active = false;
             }
         }
     }
