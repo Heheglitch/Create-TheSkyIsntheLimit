@@ -6,6 +6,7 @@ import dev.simulated_team.simulated.registrate.SimulatedRegistrate;
 import net.ctslteam.ctsl.CreateTheSkyIsnttheLimit;
 import net.ctslteam.ctsl.block.custom.thrusters.debug_thruster.CreativeThrusterBlock;
 import net.ctslteam.ctsl.block.custom.thrusters.fuel_thrusters.hydrogen_thruster.HydrogenThrusterBlock;
+import net.ctslteam.ctsl.block.custom.decoupler.SelfDestructDecouplerBlock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -59,6 +60,14 @@ public class CtslBlocks {
                     .item()
                     .transform(customItemModel())
                     .register();
+
+    public static final BlockEntry<SelfDestructDecouplerBlock> SELF_DESTRUCT_DECOUPLER =
+        REGISTRATE.block("self_destruct_decoupler", SelfDestructDecouplerBlock::new)
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .lang("Self-Destruct Decoupler")
+                .blockstate((c, p) -> p.simpleBlock(c.get()))
+                .item()
+                .register();
 
     public static void init() {
 
