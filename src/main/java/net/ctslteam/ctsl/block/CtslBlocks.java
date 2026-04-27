@@ -64,9 +64,12 @@ public class CtslBlocks {
     public static final BlockEntry<SelfDestructDecouplerBlock> SELF_DESTRUCT_DECOUPLER =
         REGISTRATE.block("self_destruct_decoupler", SelfDestructDecouplerBlock::new)
                 .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(properties -> properties.noOcclusion())
                 .lang("Self-Destruct Decoupler")
-                .blockstate((c, p) -> p.simpleBlock(c.get()))
+                .blockstate((c, p) -> p.directionalBlock(c.get(),
+                        AssetLookup.partialBaseModel(c, p)))
                 .item()
+                .transform(customItemModel())
                 .register();
 
     public static void init() {

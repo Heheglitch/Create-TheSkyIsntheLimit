@@ -1,5 +1,6 @@
 {
   "block.ctsl.creative_thruster": "Creative Thruster",
   "block.ctsl.hydrogen_thruster": "Hydrogen Thruster",
+  "block.ctsl.self_destruct_decoupler": "Self-Destruct Decoupler",
   "item.ctsl.test_item": "Test ITEM"
 }
