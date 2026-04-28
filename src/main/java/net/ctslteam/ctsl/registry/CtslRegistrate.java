@@ -1,4 +1,4 @@
-package net.ctslteam.registry;
+package net.ctslteam.ctsl.registry;
 
 import net.minecraft.resources.ResourceLocation;
 

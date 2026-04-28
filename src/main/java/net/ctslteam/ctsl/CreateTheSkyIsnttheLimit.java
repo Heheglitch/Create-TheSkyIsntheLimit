@@ -10,7 +10,7 @@ import net.createmod.catnip.lang.FontHelper;
 import net.ctslteam.ctsl.block.CtslBlocks;
 import net.ctslteam.ctsl.index.CtslBlockEntityTypes;
 import net.ctslteam.ctsl.item.CtslItems;
-import net.ctslteam.registry.CtslRegistrate;
+import net.ctslteam.ctsl.registry.CtslRegistrate;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
