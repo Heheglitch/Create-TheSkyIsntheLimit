@@ -8,6 +8,8 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.simulated_team.simulated.util.SimColors;
 import net.createmod.catnip.lang.FontHelper;
 import net.ctslteam.ctsl.block.CtslBlocks;
+import net.ctslteam.ctsl.config.CtslServer;
+import net.ctslteam.ctsl.fluid.CtslFluids;
 import net.ctslteam.ctsl.index.CtslBlockEntityTypes;
 import net.ctslteam.ctsl.item.CtslItems;
 import net.ctslteam.ctsl.registry.CtslRegistrate;
@@ -47,8 +49,9 @@ public class CreateTheSkyIsnttheLimit {
         NeoForge.EVENT_BUS.register(this);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        modContainer.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, CtslServer.SPEC);
 
+        //Get registrate so we can reference it in other classes
         getRegistrate().registerEventListeners(modEventBus);
 
         init();
@@ -67,6 +70,7 @@ public class CreateTheSkyIsnttheLimit {
         CtslBlocks.init();
         CtslBlockEntityTypes.init();
         CtslItems.init();
+        CtslFluids.init();
     }
 
     public static CtslRegistrate getRegistrate() {

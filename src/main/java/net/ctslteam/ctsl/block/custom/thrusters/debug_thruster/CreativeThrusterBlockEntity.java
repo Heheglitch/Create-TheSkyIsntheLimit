@@ -1,6 +1,6 @@
 package net.ctslteam.ctsl.block.custom.thrusters.debug_thruster;
 
-import net.ctslteam.ctsl.Config;
+import net.ctslteam.ctsl.config.CtslServer;
 import net.ctslteam.ctsl.block.custom.thrusters.AbstractThrusterBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -14,6 +14,6 @@ public class CreativeThrusterBlockEntity extends AbstractThrusterBlockEntity {
 
     @Override
     public double getConfigThrust() {
-        return Config.CREATIVE_THRUSTER_THRUST.get();
+        return CtslServer.CREATIVE_THRUSTER_THRUST.get();
     }
 }

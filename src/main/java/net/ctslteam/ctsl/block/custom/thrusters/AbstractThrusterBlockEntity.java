@@ -37,11 +37,12 @@ public abstract class AbstractThrusterBlockEntity extends BlockEntity implements
 
     @Override
     public void sable$tick(ServerSubLevel subLevel) {
-        if (ThrusterActive) {
+        /*if (ThrusterActive) {
             Active = true;
         } else {
             Active = false;
         }
+         */
     }
 
     @Override
