@@ -1,58 +1,100 @@
-package net.ctslteam.ctsl.block.custom.decoupler; // арбузики
+package net.ctslteam.ctsl.block.custom.decoupler;
 
-import com.mojang.serialization.MapCodec;
-import net.ctslteam.ctsl.block.custom.thrusters.debug_thruster.CreativeThrusterBlock;
-import net.ctslteam.ctsl.index.CtslBlockShapes;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.Nullable;
 
-public class SelfDestructDecouplerBlock extends DirectionalBlock {
-    public static final MapCodec<SelfDestructDecouplerBlock> CODEC = simpleCodec(SelfDestructDecouplerBlock::new);
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+
+import net.minecraft.world.phys.AABB;
+
+public class SelfDestructDecouplerBlock extends Block {
+
+    public static final BooleanProperty POWERED =
+            BlockStateProperties.POWERED;
 
     public SelfDestructDecouplerBlock(Properties properties) {
         super(properties);
+
+        this.registerDefaultState(
+                this.stateDefinition.any()
+                        .setValue(POWERED,false)
+        );
     }
 
     @Override
-    protected MapCodec<? extends DirectionalBlock> codec() {
-        return CODEC;
-    }
+    protected void neighborChanged(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Block block,
+            BlockPos fromPos,
+            boolean moving
+    ) {
 
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
-        super.createBlockStateDefinition(builder);
-    }
-
-    @Override
-    public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
-        if (context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) {
-            return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection());
-        } else {
-            return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite());
-        }
-    }
-
-    @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return CtslBlockShapes.SELF_DESTRUCT_DECOUPLER.get(state.getValue(FACING));
-    }
-
-    @Override
-    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean moving) {
         if (level.isClientSide) return;
 
-        if (level.hasNeighborSignal(pos)) {
-            level.destroyBlock(pos, false); 
+        boolean powered = level.hasNeighborSignal(pos);
+
+        if (powered && !state.getValue(POWERED)) {
+
+            level.scheduleTick(
+                    pos,
+                    this,
+                    10
+            );
+
+            level.setBlock(
+                    pos,
+                    state.setValue(
+                            POWERED,
+                            true
+                    ),
+                    3
+            );
         }
+    }
+
+    @Override
+    public void tick(
+            BlockState state,
+            ServerLevel level,
+            BlockPos pos,
+            RandomSource random
+    ) {
+
+        if (!level.getEntitiesOfClass(
+                Player.class,
+                new AABB(pos)
+        ).isEmpty()) {
+
+            level.scheduleTick(
+                    pos,
+                    this,
+                    10
+            );
+
+            return;
+        }
+
+        level.destroyBlock(
+                pos,
+                false
+        );
+    }
+
+    @Override
+    protected void createBlockStateDefinition(
+            StateDefinition.Builder<Block, BlockState> builder
+    ) {
+        builder.add(POWERED);
     }
 }

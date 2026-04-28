@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "ctsl:block/self_destruct_decoupler" }
+  }
+}
