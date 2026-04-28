@@ -1,5 +1,6 @@
 package net.ctslteam.ctsl.block.custom.thrusters;
 
+import dev.ryanhcode.sable.sublevel.ServerSubLevel;
 import net.ctslteam.ctsl.api.sable.BlockEntitySubLevelThrusterActor;
 import net.ctslteam.ctsl.api.sable.BlockEntityThruster;
 import net.minecraft.core.BlockPos;
@@ -13,6 +14,8 @@ public abstract class AbstractThrusterBlockEntity extends BlockEntity implements
     public AbstractThrusterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
+
+    public static boolean ThrusterActive;
 
     public static boolean Active;
 
@@ -30,6 +33,15 @@ public abstract class AbstractThrusterBlockEntity extends BlockEntity implements
     @Override
     public Direction getBlockDirection() {
         return this.getBlockState().getValue(BlockStateProperties.FACING);
+    }
+
+    @Override
+    public void sable$tick(ServerSubLevel subLevel) {
+        if (ThrusterActive) {
+            Active = true;
+        } else {
+            Active = false;
+        }
     }
 
     @Override

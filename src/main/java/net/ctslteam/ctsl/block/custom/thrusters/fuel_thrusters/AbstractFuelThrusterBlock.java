@@ -19,7 +19,7 @@ public abstract class AbstractFuelThrusterBlock extends AbstractThrusterBlock {
     }
 
     public static FluidStack REQUIRED_FUEL = new FluidStack(Fluids.LAVA, FluidType.BUCKET_VOLUME);
-    public static int REQUIRED_FUEL_AMOUNT = 500;
+    public static int REQUIRED_FUEL_AMOUNT = 1;
 
     @Override
     protected void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos neighborPos, boolean movedByPiston) {
@@ -44,12 +44,13 @@ public abstract class AbstractFuelThrusterBlock extends AbstractThrusterBlock {
 
                 if (FluidStack.isSameFluid(REQUIRED_FUEL, fluidHandler.getFluidInTank(fluidTankID))) {
                     if (fluidHandler.getFluidInTank(fluidTankID).getAmount() >= REQUIRED_FUEL_AMOUNT) {
-                        AbstractThrusterBlockEntity.Active = worldIn.hasNeighborSignal(pos);
-                        fluidHandler.drain(REQUIRED_FUEL_AMOUNT, IFluidHandler.FluidAction.EXECUTE);
+                        //AbstractThrusterBlockEntity.Active = worldIn.hasNeighborSignal(pos);
+                        //fluidHandler.drain(REQUIRED_FUEL_AMOUNT, IFluidHandler.FluidAction.EXECUTE);
+                        AbstractThrusterBlockEntity.ThrusterActive = worldIn.hasNeighborSignal(pos);
                     }
                 }
             } else {
-                AbstractThrusterBlockEntity.Active = false;
+                AbstractThrusterBlockEntity.ThrusterActive = false;
             }
         }
     }
