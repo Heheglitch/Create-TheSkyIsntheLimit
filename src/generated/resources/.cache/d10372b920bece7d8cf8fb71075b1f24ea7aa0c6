@@ -1,7 +1,7 @@
-// 1.21.1	2026-04-27T18:54:47.093955823	Registrate Provider for ctsl [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2026-04-28T18:44:27.882191282	Registrate Provider for ctsl [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 098a13cebb9be416d5df9d0fe1203e36d71e32ae assets/ctsl/blockstates/creative_thruster.json
 25dcf745ef0981c5a180396ca20d950417c82a0a assets/ctsl/blockstates/hydrogen_thruster.json
-732317098113b09af3d10d7b3d174e68bf1c69fc assets/ctsl/blockstates/self_destruct_decoupler.json
+ffaa8f81c0a8dc945e3b7e671596b3ba06d89748 assets/ctsl/blockstates/self_destruct_decoupler.json
 818e9fc3b96ce2c2ee9a39433ba032fbdd907198 assets/ctsl/lang/en_ud.json
 2076937e557b21ec8840968363fe1b4943194aa6 assets/ctsl/lang/en_us.json
 c0bfd20000ca3e6ef7fb3cef0f51c188aeae2a03 assets/ctsl/models/item/creative_thruster.json

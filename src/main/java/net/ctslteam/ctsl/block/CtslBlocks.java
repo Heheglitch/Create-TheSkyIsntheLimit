@@ -66,7 +66,7 @@ public class CtslBlocks {
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .properties(properties -> properties.noOcclusion())
                 .lang("Self-Destruct Decoupler")
-                .blockstate((c, p) -> p.directionalBlock(c.get(),
+                .blockstate((c, p) -> p.simpleBlock(c.get(),
                         AssetLookup.partialBaseModel(c, p)))
                 .item()
                 .transform(customItemModel())
