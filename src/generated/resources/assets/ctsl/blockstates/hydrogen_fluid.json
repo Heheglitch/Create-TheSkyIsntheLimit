@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ctsl:block/hydrogen_fluid"
+    }
+  }
+}

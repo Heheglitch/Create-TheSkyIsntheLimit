@@ -1,6 +1,9 @@
 {
   "block.ctsl.creative_thruster": "Creative Thruster",
+  "block.ctsl.hydrogen_fluid": "Hydrogen Fluid",
   "block.ctsl.hydrogen_thruster": "Hydrogen Thruster",
   "block.ctsl.self_destruct_decoupler": "Self-Destruct Decoupler",
+  "fluid.ctsl.hydrogen_fluid": "Liquefied Hydrogen",
+  "item.ctsl.hydrogen_fluid_bucket": "Liquified Hydrogen Bucket",
   "item.ctsl.test_item": "Test ITEM"
 }

@@ -1,6 +1,9 @@
 {
   "block.ctsl.creative_thruster": "ɹǝʇsnɹɥ⟘ ǝʌıʇɐǝɹƆ",
+  "block.ctsl.hydrogen_fluid": "pınןℲ uǝboɹpʎH",
   "block.ctsl.hydrogen_thruster": "ɹǝʇsnɹɥ⟘ uǝboɹpʎH",
   "block.ctsl.self_destruct_decoupler": "ɹǝןdnoɔǝᗡ ʇɔnɹʇsǝᗡ-ɟןǝS",
+  "fluid.ctsl.hydrogen_fluid": "uǝboɹpʎH pǝıɟǝnbıꞀ",
+  "item.ctsl.hydrogen_fluid_bucket": "ʇǝʞɔnᗺ uǝboɹpʎH pǝıɟınbıꞀ",
   "item.ctsl.test_item": "WƎ⟘I ʇsǝ⟘"
 }
