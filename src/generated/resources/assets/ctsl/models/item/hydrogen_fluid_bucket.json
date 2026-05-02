@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ctsl:item/hydrogen_fluid_bucket"
+  }
+}

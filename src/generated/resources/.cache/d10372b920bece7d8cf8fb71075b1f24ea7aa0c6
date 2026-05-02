@@ -1,13 +1,18 @@
-// 1.21.1	2026-04-28T18:44:27.882191282	Registrate Provider for ctsl [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2026-05-01T22:05:40.256792596	Registrate Provider for ctsl [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 098a13cebb9be416d5df9d0fe1203e36d71e32ae assets/ctsl/blockstates/creative_thruster.json
+40a62c20bb180f1b3a0c79c9b2b0c427a0c1447b assets/ctsl/blockstates/hydrogen_fluid.json
 25dcf745ef0981c5a180396ca20d950417c82a0a assets/ctsl/blockstates/hydrogen_thruster.json
 ffaa8f81c0a8dc945e3b7e671596b3ba06d89748 assets/ctsl/blockstates/self_destruct_decoupler.json
-818e9fc3b96ce2c2ee9a39433ba032fbdd907198 assets/ctsl/lang/en_ud.json
-2076937e557b21ec8840968363fe1b4943194aa6 assets/ctsl/lang/en_us.json
+e53a6aa6eeeb446a61e71121ca021fb3e16afe06 assets/ctsl/lang/en_ud.json
+663369b8810133cb4558f1034f50de2b4ce03e5f assets/ctsl/lang/en_us.json
+d724422f7df13a6b59cecee5f77784a47d43f14a assets/ctsl/models/block/hydrogen_fluid.json
 c0bfd20000ca3e6ef7fb3cef0f51c188aeae2a03 assets/ctsl/models/item/creative_thruster.json
+72d24c5721088e737ea28277439d5bd1cf0d60bb assets/ctsl/models/item/hydrogen_fluid_bucket.json
 381e58063ffe0b33f8df42e5b0c686413bc2176a assets/ctsl/models/item/hydrogen_thruster.json
 9f907c543f529644446e427e6fbbd34531a62e8e assets/ctsl/models/item/self_destruct_decoupler.json
 c2c3f015892d0d45a6ab53865ba52e0a7d4d468f assets/ctsl/models/item/test_item.json
+3d325610dbbe7c13d97f6ff82413fba70563ef79 data/c/tags/fluid/water.json
+aaacb3c07c535e818b527d85c1772b4c1032d6c3 data/c/tags/item/buckets.json
 c391e5bd0f7fa88c2560b1ad2f21b83748487812 data/ctsl/loot_table/blocks/creative_thruster.json
 d89e7e8cfdb6d3786b93ff478f2fb9ff7f1d7b50 data/ctsl/loot_table/blocks/hydrogen_thruster.json
 6bfed95a60515e07277b7a4fd88433db2149d883 data/ctsl/loot_table/blocks/self_destruct_decoupler.json
