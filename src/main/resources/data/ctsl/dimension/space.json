@@ -1,0 +1,11 @@
+{
+  "type": "ctsl:space",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "minecraft:the_void"
+    },
+    "settings": "ctsl:space_empty"
+  }
+}
