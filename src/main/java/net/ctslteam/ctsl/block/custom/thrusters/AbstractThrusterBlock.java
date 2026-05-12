@@ -50,7 +50,7 @@ public abstract class AbstractThrusterBlock extends DirectionalBlock implements 
         if (previouslyPowered != worldIn.hasNeighborSignal(pos)) {
             worldIn.setBlock(pos, state.cycle(POWERED), Block.UPDATE_CLIENTS);
             //AbstractThrusterBlockEntity.Active = worldIn.hasNeighborSignal(pos);
-            AbstractThrusterBlockEntity.ThrusterActive = true;
+            AbstractThrusterBlockEntity.ThrusterActive = worldIn.hasNeighborSignal(pos);
         }
     }
 

@@ -18,7 +18,6 @@ public class SpaceGravityHandler {
 
         if (inSpace) {
             player.fallDistance = 0.0f;
-
         }
     }
 }
