@@ -1,6 +1,9 @@
 package net.ctslteam.ctsl;
 
+import net.ctslteam.ctsl.data.CelestialReloadListener;
+import net.ctslteam.ctsl.render.CelestialVeilRendering;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -23,6 +26,9 @@ public class CreateTheSkyIsnttheLimitClient {
 
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
+    }
 
+    public static void init(IEventBus modBus) {
+        CelestialVeilRendering.init();
     }
 }

@@ -1,0 +1,11 @@
+{
+  "id": "sun",
+  "type": "star",
+  "world_anchor": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "render_radius": 16000.0,
+  "collision_radius": 300.0
+}

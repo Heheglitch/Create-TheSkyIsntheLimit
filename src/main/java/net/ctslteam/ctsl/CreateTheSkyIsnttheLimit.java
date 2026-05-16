@@ -9,6 +9,7 @@ import dev.simulated_team.simulated.util.SimColors;
 import net.createmod.catnip.lang.FontHelper;
 import net.ctslteam.ctsl.block.CtslBlocks;
 import net.ctslteam.ctsl.config.CtslServer;
+import net.ctslteam.ctsl.data.CelestialReloadListener;
 import net.ctslteam.ctsl.fluid.CtslFluids;
 import net.ctslteam.ctsl.index.CtslBlockEntityTypes;
 import net.ctslteam.ctsl.item.CtslItems;
@@ -16,6 +17,7 @@ import net.ctslteam.ctsl.registry.CtslRegistrate;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
+import net.neoforged.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -47,6 +49,13 @@ public class CreateTheSkyIsnttheLimit {
         // Note that this is necessary if and only if we want *this* class (CreateTheSkyIsnttheLimit) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
+
+        //Register the celestial reload listener for the celestials json
+        NeoForge.EVENT_BUS.register(CelestialReloadListener.class);
+
+        if (FMLEnvironment.dist.isClient()) {
+            CreateTheSkyIsnttheLimitClient.init(modEventBus);
+        }
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.SERVER, CtslServer.SPEC);

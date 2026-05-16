@@ -1,0 +1,19 @@
+{
+  "id": "mars",
+  "type": "planet",
+  "linked_dimension": "create_theskyisnthelimit:mars",
+  "world_anchor": {
+    "x": 1200000.0,
+    "y": 0.0,
+    "z": -400000.0
+  },
+  "render_radius": 8000.0,
+  "collision_radius": 120.0,
+  "orbit": {
+    "center": "sun",
+    "semi_major_axis": 1200000.0,
+    "inclination_deg": 3.5,
+    "period_ticks": 720000,
+    "phase_deg": 40.0
+  }
+}
