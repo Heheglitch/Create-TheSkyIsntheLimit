@@ -15,7 +15,7 @@ public abstract class AbstractThrusterBlockEntity extends BlockEntity implements
         super(type, pos, blockState);
     }
 
-    public static boolean ThrusterActive;
+    public static boolean ThrusterActive = false;
 
     public static boolean Active;
 

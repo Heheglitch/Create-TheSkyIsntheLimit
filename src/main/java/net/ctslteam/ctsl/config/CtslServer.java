@@ -19,5 +19,9 @@ public class CtslServer {
             .comment("The Hydrogen Thruster Consomation in mb/t")
             .define("Hydrogen Thruster Consomation in mb/t", 1);
 
+    public static final ModConfigSpec.ConfigValue<Integer> SPACE_HEIGHT = BUILDER
+            .comment("The height for the overwolrd to teleport a sub level in space")
+            .define("Space Height", 2048);
+
     public static final ModConfigSpec SPEC = BUILDER.build();
 }
