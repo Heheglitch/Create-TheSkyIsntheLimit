@@ -14,7 +14,7 @@ public final class CelestialRenderTypes {
             true,
             RenderType.CompositeState.builder()
                     .setShaderState(RenderType.POSITION_COLOR_SHADER)
-                    .setTransparencyState(RenderType.TRANSLUCENT_TRANSPARENCY)
+                    .setTransparencyState(RenderType.NO_TRANSPARENCY)
                     .setOutputState(RenderType.TRANSLUCENT_TARGET)
                     .setDepthTestState(RenderType.LEQUAL_DEPTH_TEST)
                     .setCullState(RenderType.CULL)

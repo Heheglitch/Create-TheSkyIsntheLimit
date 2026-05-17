@@ -14,7 +14,11 @@ import org.joml.Vector4f;
 
 public final class CelestialVeilRenderer {
     private static final Vec3 DEBUG_REAL_POSITION = new Vec3(80.0, 100.0, 0.0);
-    private static final double RENDER_DISTANCE_FROM_CAMERA = 120.0D;
+
+    private static final double FAR_RENDER_DISTANCE_FROM_CAMERA = 120.0D;
+
+    private static final double TRANSITION_START_DISTANCE = 300.0D;
+    private static final double TRANSITION_END_DISTANCE = 250.0D;
 
     private static final double DEBUG_RADIUS = 8.0D;
     private static final double MIN_VISUAL_SIZE = 0.0D;
@@ -36,48 +40,79 @@ public final class CelestialVeilRenderer {
         Vec3 cameraPos = camera.getPosition();
         VertexConsumer consumer = bufferSource.getBuffer(CelestialRenderTypes.CELESTIALS);
 
-        Vec3 renderedPos = computeRenderedPosition(cameraPos, DEBUG_REAL_POSITION);
-        float visualSize = (float) computeVisualSize(cameraPos, DEBUG_REAL_POSITION, DEBUG_RADIUS);
+        double realDistance = cameraPos.distanceTo(DEBUG_REAL_POSITION);
+        float transition = computeTransitionFactor(realDistance);
+
+        Vec3 renderedPos = computeRenderedPosition(cameraPos, DEBUG_REAL_POSITION, transition);
+        float visualSize = (float) computeVisualSize(cameraPos, DEBUG_REAL_POSITION, DEBUG_RADIUS, transition);
 
         if (mc.level.getGameTime() % 40 == 0) {
-            double realDistance = cameraPos.distanceTo(DEBUG_REAL_POSITION);
             CreateTheSkyIsnttheLimit.LOGGER.info(
-                    "Debug cube realDistance={} visualSize={} cameraPos={} realPos={}",
+                    "Debug cube realDistance={} transition={} visualSize={} cameraPos={} realPos={} renderedPos={}",
                     String.format("%.2f", realDistance),
+                    String.format("%.2f", transition),
                     String.format("%.2f", visualSize),
                     cameraPos,
-                    DEBUG_REAL_POSITION
+                    DEBUG_REAL_POSITION,
+                    renderedPos
             );
         }
 
         drawCube(matrixStack, consumer, cameraPos, renderedPos, visualSize);
     }
 
-    private static Vec3 computeRenderedPosition(Vec3 cameraPos, Vec3 realWorldPos) {
-        Vec3 dir = realWorldPos.subtract(cameraPos);
-
-        if (dir.lengthSqr() < 1.0E-6) {
-            return cameraPos.add(0.0, 0.0, RENDER_DISTANCE_FROM_CAMERA);
+    private static float computeTransitionFactor(double realDistance) {
+        if (realDistance >= TRANSITION_START_DISTANCE) {
+            return 0.0f;
         }
 
-        return cameraPos.add(dir.normalize().scale(RENDER_DISTANCE_FROM_CAMERA));
+        if (realDistance <= TRANSITION_END_DISTANCE) {
+            return 1.0f;
+        }
+
+        double t = (TRANSITION_START_DISTANCE - realDistance)
+                / (TRANSITION_START_DISTANCE - TRANSITION_END_DISTANCE);
+
+        t = t * t * (3.0D - 2.0D * t); // smoothstep
+        return (float) t;
     }
 
-    private static double computeVisualSize(Vec3 cameraPos, Vec3 realWorldPos, double realRadius) {
+    private static Vec3 computeRenderedPosition(Vec3 cameraPos, Vec3 realWorldPos, float transition) {
+        Vec3 dir = realWorldPos.subtract(cameraPos);
+
+        Vec3 farPos;
+        if (dir.lengthSqr() < 1.0E-6) {
+            farPos = cameraPos.add(0.0, 0.0, FAR_RENDER_DISTANCE_FROM_CAMERA);
+        } else {
+            farPos = cameraPos.add(dir.normalize().scale(FAR_RENDER_DISTANCE_FROM_CAMERA));
+        }
+
+        return farPos.lerp(realWorldPos, transition);
+    }
+
+    private static double computeVisualSize(Vec3 cameraPos, Vec3 realWorldPos, double realRadius, float transition) {
         double realDistance = cameraPos.distanceTo(realWorldPos);
 
         if (realDistance < 1.0E-6D) {
             return 100000.0D;
         }
 
-        double angularFactor = realRadius / realDistance;
-        double visualSize = angularFactor * RENDER_DISTANCE_FROM_CAMERA * 2.0D;
+        double farAngularFactor = realRadius / realDistance;
+        double farVisualSize = farAngularFactor * FAR_RENDER_DISTANCE_FROM_CAMERA * 2.0D;
+
+        double nearVisualSize = realRadius * 2.0D;
+
+        double visualSize = lerp(farVisualSize, nearVisualSize, transition);
 
         if (!Double.isFinite(visualSize)) {
             return 100000.0D;
         }
 
         return Math.max(MIN_VISUAL_SIZE, visualSize);
+    }
+
+    private static double lerp(double a, double b, double t) {
+        return a + (b - a) * t;
     }
 
     private static void drawCube(
