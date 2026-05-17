@@ -13,11 +13,13 @@ import net.minecraft.core.Registry;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 import org.joml.Vector4f;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class CelestialVeilRenderer {
-    private static final double FAR_RENDER_DISTANCE_FROM_CAMERA = 120.0D;
+    private static final double FAR_RENDER_DISTANCE_FROM_CAMERA = 100.0D;
     private static final double TRANSITION_START_DISTANCE = 300.0D;
-    private static final double TRANSITION_END_DISTANCE = 250.0D;
+    private static final double TRANSITION_END_DISTANCE = 300.0D;
     private static final double MIN_VISUAL_SIZE = 0.0D;
 
     private CelestialVeilRenderer() {
@@ -40,14 +42,40 @@ public final class CelestialVeilRenderer {
         Vec3 cameraPos = camera.getPosition();
         VertexConsumer consumer = bufferSource.getBuffer(CelestialRenderTypes.CELESTIALS);
 
+        List<CelestialDefinition> celestials = new ArrayList<>();
         for (CelestialDefinition celestial : registry) {
+            celestials.add(celestial);
+        }
 
-            Vec3 realPos = toVec3(celestial);
+        celestials.sort((a, b) -> {
+            Vec3 posA = new Vec3(
+                    a.worldAnchor().x(),
+                    a.worldAnchor().y(),
+                    a.worldAnchor().z()
+            );
+            Vec3 posB = new Vec3(
+                    b.worldAnchor().x(),
+                    b.worldAnchor().y(),
+                    b.worldAnchor().z()
+            );
+
+            double distA = cameraPos.distanceToSqr(posA);
+            double distB = cameraPos.distanceToSqr(posB);
+
+            return Double.compare(distB, distA); // plus loin -> plus près
+        });
+
+        for (CelestialDefinition celestial : celestials) {
+            Vec3 realPos = new Vec3(
+                    celestial.worldAnchor().x(),
+                    celestial.worldAnchor().y(),
+                    celestial.worldAnchor().z()
+            );
+
             double realRadius = celestial.renderRadius();
-
             double realDistance = cameraPos.distanceTo(realPos);
-            float transition = computeTransitionFactor(realDistance);
 
+            float transition = computeTransitionFactor(realDistance);
             Vec3 renderedPos = computeRenderedPosition(cameraPos, realPos, transition);
             float visualSize = (float) computeVisualSize(cameraPos, realPos, realRadius, transition);
 
@@ -55,15 +83,11 @@ public final class CelestialVeilRenderer {
         }
     }
 
-    private static Vec3 toVec3(CelestialDefinition celestial) {
-        return new Vec3(
-                celestial.worldAnchor().x(),
-                celestial.worldAnchor().y(),
-                celestial.worldAnchor().z()
-        );
-    }
-
     private static float computeTransitionFactor(double realDistance) {
+        if (TRANSITION_START_DISTANCE == TRANSITION_END_DISTANCE) {
+            return realDistance < TRANSITION_START_DISTANCE ? 1.0f : 0.0f;
+        }
+
         if (realDistance >= TRANSITION_START_DISTANCE) {
             return 0.0f;
         }
