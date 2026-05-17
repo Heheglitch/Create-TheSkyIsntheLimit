@@ -1,0 +1,12 @@
+{
+  "id": "debug_planet",
+  "type": "planet",
+  "linked_dimension": "minecraft:overworld",
+  "world_anchor": {
+    "x": 1000.0,
+    "y": 200.0,
+    "z": 0.0
+  },
+  "render_radius": 8000.0,
+  "collision_radius": 120.0
+}
