@@ -18,7 +18,7 @@ public final class CelestialRenderTypes {
                     .setOutputState(RenderType.TRANSLUCENT_TARGET)
                     .setDepthTestState(RenderType.LEQUAL_DEPTH_TEST)
                     .setCullState(RenderType.CULL)
-                    .setWriteMaskState(RenderType.COLOR_WRITE)
+                    .setWriteMaskState(RenderType.COLOR_DEPTH_WRITE)
                     .createCompositeState(false)
     );
 

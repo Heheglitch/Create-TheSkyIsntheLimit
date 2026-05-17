@@ -4,7 +4,7 @@
   "linked_dimension": "minecraft:overworld",
   "world_anchor": {
     "x": 0.0,
-    "y": 0.0,
+    "y": 20.0,
     "z": 0.0
   },
   "render_radius": 8.0,

@@ -3,24 +3,21 @@ package net.ctslteam.ctsl.render;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import foundry.veil.api.client.render.MatrixStack;
-import net.ctslteam.ctsl.CreateTheSkyIsnttheLimit;
+import net.ctslteam.ctsl.api.celestials.CelestialDefinition;
+import net.ctslteam.ctsl.registry.CelestialRegistries;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.core.Registry;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 import org.joml.Vector4f;
 
 public final class CelestialVeilRenderer {
-    private static final Vec3 DEBUG_REAL_POSITION = new Vec3(80.0, 100.0, 0.0);
-
     private static final double FAR_RENDER_DISTANCE_FROM_CAMERA = 120.0D;
-
     private static final double TRANSITION_START_DISTANCE = 300.0D;
     private static final double TRANSITION_END_DISTANCE = 250.0D;
-
-    private static final double DEBUG_RADIUS = 8.0D;
     private static final double MIN_VISUAL_SIZE = 0.0D;
 
     private CelestialVeilRenderer() {
@@ -37,28 +34,33 @@ public final class CelestialVeilRenderer {
             return;
         }
 
+        Registry<CelestialDefinition> registry =
+                mc.level.registryAccess().registryOrThrow(CelestialRegistries.CELESTIAL_REGISTRY_KEY);
+
         Vec3 cameraPos = camera.getPosition();
         VertexConsumer consumer = bufferSource.getBuffer(CelestialRenderTypes.CELESTIALS);
 
-        double realDistance = cameraPos.distanceTo(DEBUG_REAL_POSITION);
-        float transition = computeTransitionFactor(realDistance);
+        for (CelestialDefinition celestial : registry) {
 
-        Vec3 renderedPos = computeRenderedPosition(cameraPos, DEBUG_REAL_POSITION, transition);
-        float visualSize = (float) computeVisualSize(cameraPos, DEBUG_REAL_POSITION, DEBUG_RADIUS, transition);
+            Vec3 realPos = toVec3(celestial);
+            double realRadius = celestial.renderRadius();
 
-        if (mc.level.getGameTime() % 40 == 0) {
-            CreateTheSkyIsnttheLimit.LOGGER.info(
-                    "Debug cube realDistance={} transition={} visualSize={} cameraPos={} realPos={} renderedPos={}",
-                    String.format("%.2f", realDistance),
-                    String.format("%.2f", transition),
-                    String.format("%.2f", visualSize),
-                    cameraPos,
-                    DEBUG_REAL_POSITION,
-                    renderedPos
-            );
+            double realDistance = cameraPos.distanceTo(realPos);
+            float transition = computeTransitionFactor(realDistance);
+
+            Vec3 renderedPos = computeRenderedPosition(cameraPos, realPos, transition);
+            float visualSize = (float) computeVisualSize(cameraPos, realPos, realRadius, transition);
+
+            drawCube(matrixStack, consumer, cameraPos, renderedPos, visualSize);
         }
+    }
 
-        drawCube(matrixStack, consumer, cameraPos, renderedPos, visualSize);
+    private static Vec3 toVec3(CelestialDefinition celestial) {
+        return new Vec3(
+                celestial.worldAnchor().x(),
+                celestial.worldAnchor().y(),
+                celestial.worldAnchor().z()
+        );
     }
 
     private static float computeTransitionFactor(double realDistance) {
@@ -73,7 +75,7 @@ public final class CelestialVeilRenderer {
         double t = (TRANSITION_START_DISTANCE - realDistance)
                 / (TRANSITION_START_DISTANCE - TRANSITION_END_DISTANCE);
 
-        t = t * t * (3.0D - 2.0D * t); // smoothstep
+        t = t * t * (3.0D - 2.0D * t);
         return (float) t;
     }
 
@@ -99,7 +101,6 @@ public final class CelestialVeilRenderer {
 
         double farAngularFactor = realRadius / realDistance;
         double farVisualSize = farAngularFactor * FAR_RENDER_DISTANCE_FROM_CAMERA * 2.0D;
-
         double nearVisualSize = realRadius * 2.0D;
 
         double visualSize = lerp(farVisualSize, nearVisualSize, transition);
@@ -141,53 +142,12 @@ public final class CelestialVeilRenderer {
         Vector4f topColor    = new Vector4f(0.75f, 0.90f, 1.00f, 1.0f);
         Vector4f bottomColor = new Vector4f(0.15f, 0.25f, 0.45f, 1.0f);
 
-        // Front (+Z)
-        quad(consumer, matrix,
-                -h, -h,  h,
-                -h,  h,  h,
-                h,  h,  h,
-                h, -h,  h,
-                frontColor);
-
-        // Back (-Z)
-        quad(consumer, matrix,
-                h, -h, -h,
-                h,  h, -h,
-                -h,  h, -h,
-                -h, -h, -h,
-                backColor);
-
-        // Left (-X)
-        quad(consumer, matrix,
-                -h, -h, -h,
-                -h,  h, -h,
-                -h,  h,  h,
-                -h, -h,  h,
-                leftColor);
-
-        // Right (+X)
-        quad(consumer, matrix,
-                h, -h,  h,
-                h,  h,  h,
-                h,  h, -h,
-                h, -h, -h,
-                rightColor);
-
-        // Top (+Y)
-        quad(consumer, matrix,
-                -h,  h,  h,
-                -h,  h, -h,
-                h,  h, -h,
-                h,  h,  h,
-                topColor);
-
-        // Bottom (-Y)
-        quad(consumer, matrix,
-                -h, -h, -h,
-                -h, -h,  h,
-                h, -h,  h,
-                h, -h, -h,
-                bottomColor);
+        quad(consumer, matrix, -h, -h,  h, -h,  h,  h,  h,  h,  h,  h, -h,  h, frontColor);
+        quad(consumer, matrix,  h, -h, -h,  h,  h, -h, -h,  h, -h, -h, -h, -h, backColor);
+        quad(consumer, matrix, -h, -h, -h, -h,  h, -h, -h,  h,  h, -h, -h,  h, leftColor);
+        quad(consumer, matrix,  h, -h,  h,  h,  h,  h,  h,  h, -h,  h, -h, -h, rightColor);
+        quad(consumer, matrix, -h,  h,  h, -h,  h, -h,  h,  h, -h,  h,  h,  h, topColor);
+        quad(consumer, matrix, -h, -h, -h, -h, -h,  h,  h, -h,  h,  h, -h, -h, bottomColor);
 
         poseStack.popPose();
     }
