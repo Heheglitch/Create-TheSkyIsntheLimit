@@ -3,10 +3,10 @@
   "type": "planet",
   "linked_dimension": "minecraft:overworld",
   "world_anchor": {
-    "x": 0.0,
+    "x": 50.0,
     "y": 0.0,
     "z": 0.0
   },
   "render_radius": 8.0,
-  "collision_radius": 120.0
+  "collision_radius": 12.0
 }
