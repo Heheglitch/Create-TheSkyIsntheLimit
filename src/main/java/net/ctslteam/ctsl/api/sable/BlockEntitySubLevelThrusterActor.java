@@ -6,9 +6,13 @@ import dev.ryanhcode.sable.api.physics.force.QueuedForceGroup;
 import dev.ryanhcode.sable.api.physics.handle.RigidBodyHandle;
 import dev.ryanhcode.sable.companion.math.JOMLConversion;
 import dev.ryanhcode.sable.sublevel.ServerSubLevel;
+import net.ctslteam.ctsl.block.custom.thrusters.AbstractThrusterBlockEntity;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3d;
 
+/**
+ * This interface is used to generate the thrust/forces of all {@link AbstractThrusterBlockEntity} it extends {@link BlockEntitySubLevelActor}
+ */
 public interface BlockEntitySubLevelThrusterActor extends BlockEntitySubLevelActor {
 
     Vector3d THRUST_VECTOR = new Vector3d();

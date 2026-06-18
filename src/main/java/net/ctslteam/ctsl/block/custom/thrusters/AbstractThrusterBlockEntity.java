@@ -10,6 +10,9 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
+/**
+ * This is the abstract class of all the "logic" behind the Thrusters
+ */
 public abstract class AbstractThrusterBlockEntity extends BlockEntity implements BlockEntitySubLevelThrusterActor, BlockEntityThruster {
     public AbstractThrusterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);

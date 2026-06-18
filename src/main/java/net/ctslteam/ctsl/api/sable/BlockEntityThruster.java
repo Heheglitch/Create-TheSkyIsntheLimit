@@ -3,13 +3,14 @@ package net.ctslteam.ctsl.api.sable;
 import dev.ryanhcode.sable.Sable;
 import dev.ryanhcode.sable.companion.math.JOMLConversion;
 import dev.ryanhcode.sable.sublevel.SubLevel;
+import net.ctslteam.ctsl.block.custom.thrusters.AbstractThrusterBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import org.joml.Vector3d;
 
 /**
- * Spinny spin spin, woosh woosh!
+ * This interface is used to get information for all of the {@link AbstractThrusterBlockEntity}
  */
 public interface BlockEntityThruster {
 

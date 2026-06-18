@@ -8,6 +8,16 @@ import net.minecraft.world.phys.Vec3;
 import java.util.Locale;
 import java.util.Optional;
 
+/**
+ *This record store all kind of celestial specific things
+ * @param id
+ * @param type
+ * @param linkedDimension
+ * @param worldAnchor
+ * @param renderRadius
+ * @param collisionRadius
+ * @param orbit
+ */
 public record CelestialDefinition(
         String id,
         CelestialType type,

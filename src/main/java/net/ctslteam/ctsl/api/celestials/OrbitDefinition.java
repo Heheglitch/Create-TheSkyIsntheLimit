@@ -3,6 +3,14 @@ package net.ctslteam.ctsl.api.celestials;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+/**
+ * This record is used to get Orbit related data of a celestial
+ * @param center
+ * @param semiMajorAxis
+ * @param inclinationDeg
+ * @param periodTicks
+ * @param phaseDeg
+ */
 public record OrbitDefinition(
         String center,
         double semiMajorAxis,

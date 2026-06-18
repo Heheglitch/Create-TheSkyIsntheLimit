@@ -20,7 +20,7 @@ import java.util.Map;
 public class CelestialDataLoader extends SimpleJsonResourceReloadListener {
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final Gson GSON = new GsonBuilder().create();
-    private static final String FOLDER = "celestials";
+    private static final String FOLDER = "ctsl/celestials";
 
     public CelestialDataLoader() {
         super(GSON, FOLDER);

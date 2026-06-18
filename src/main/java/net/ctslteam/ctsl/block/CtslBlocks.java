@@ -16,6 +16,9 @@ import net.minecraft.world.level.block.Blocks;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 
+/**
+ * This class use the {@link SimulatedRegistrate} of ctsl to add blocks to ctsl
+ */
 public class CtslBlocks {
     private static final SimulatedRegistrate REGISTRATE = CreateTheSkyIsnttheLimit.getRegistrate();
 

@@ -14,6 +14,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * This abstract class is the base of all "physical" Thrusters, it implements {@link AbstractThrusterBlockEntity}
+ */
 public abstract class AbstractThrusterBlock extends DirectionalBlock implements IBE<AbstractThrusterBlockEntity> {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;

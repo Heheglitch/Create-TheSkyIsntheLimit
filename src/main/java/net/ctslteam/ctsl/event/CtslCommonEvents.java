@@ -25,6 +25,12 @@ import org.joml.Vector3d;
 @EventBusSubscriber(modid = CreateTheSkyIsnttheLimit.MOD_ID)
 public final class CtslCommonEvents {
 
+    private static final ResourceLocation SPACE_DIMENSION_ID =
+            ResourceLocation.fromNamespaceAndPath("ctsl", "space");
+
+    private CtslCommonEvents() {
+    }
+
     @SubscribeEvent
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
         LivingEntity entity = event.getEntity();
@@ -34,7 +40,7 @@ public final class CtslCommonEvents {
             return;
         }
 
-        if (!level.dimension().location().equals(ResourceLocation.fromNamespaceAndPath("ctsl", "space"))) {
+        if (!level.dimension().location().equals(SPACE_DIMENSION_ID)) {
             return;
         }
 
@@ -56,6 +62,7 @@ public final class CtslCommonEvents {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         if (player.level().isClientSide()) return;
         if (player.tickCount % 10 != 0) return;
+        if (SubLevelTeleportService.isPlayerBusy(player)) return;
 
         var tracked = Sable.HELPER.getTrackingSubLevel(player);
         if (!(tracked instanceof ServerSubLevel subLevel)) return;
@@ -65,21 +72,21 @@ public final class CtslCommonEvents {
         if (CtslDimensions.isSpace(player.level())) return;
 
         ServerLevel space = player.server.getLevel(
-                ResourceKey.create(
-                        Registries.DIMENSION,
-                        ResourceLocation.fromNamespaceAndPath("ctsl", "space")
-                )
+                ResourceKey.create(Registries.DIMENSION, SPACE_DIMENSION_ID)
         );
         if (space == null) return;
 
-        Vector3d targetPos = new Vector3d(0, 10, 0);
+        Vector3d targetPos = new Vector3d(0.0, 10.0, 0.0);
+
+        boolean started = SubLevelTeleportService.warpAndLock(subLevel, space, targetPos);
+        if (!started) {
+            return;
+        }
 
         CreateTheSkyIsnttheLimit.LOGGER.info(
-                "Player : {} is in space with this sub level : {}",
-                player.getName().getString(),
+                "Player {} reached space threshold with sublevel {}",
+                player.getGameProfile().getName(),
                 subLevel.getName()
         );
-
-        SubLevelTeleportService.warpAndLock(subLevel, space, targetPos);
     }
 }
