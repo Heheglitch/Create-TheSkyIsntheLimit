@@ -46,7 +46,7 @@ public final class CelestialCollisionHandler {
 
         long gameTime = level.getGameTime();
 
-        for (ServerPlayer player : level.players()) {
+        for (ServerPlayer player : java.util.List.copyOf(level.players())) {
             if (SubLevelTeleportService.isPlayerBusy(player)) {
                 continue;
             }
